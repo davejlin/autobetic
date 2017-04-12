@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>General Settings</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Reset All Default Settings</string>
+			<key>Key</key>
+			<string>generalResetAllDefaultSettings</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Shoes per Session</string>
+			<key>Key</key>
+			<string>nShoesPerSession</string>
+			<key>DefaultValue</key>
+			<string>1000</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Decks Per Shoe</string>
+			<key>Key</key>
+			<string>nDecksPerShoe</string>
+			<key>DefaultValue</key>
+			<string>8</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Baccarat Simulator Settings</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Bankroll</string>
+			<key>Key</key>
+			<string>simBasicBankroll</string>
+			<key>DefaultValue</key>
+			<string>10000</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Base Bet</string>
+			<key>Key</key>
+			<string>simBasicBaseBet</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Max Bet</string>
+			<key>Key</key>
+			<string>simBasicMaxBet</string>
+			<key>DefaultValue</key>
+			<string>100</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Table Limits Min</string>
+			<key>Key</key>
+			<string>simBasicTableLimitsMin</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Table Limits Max</string>
+			<key>Key</key>
+			<string>simBasicTableLimitsMax</string>
+			<key>DefaultValue</key>
+			<string>10000</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Bet On</string>
+			<key>Key</key>
+			<string>simBasicBetPlacement</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Titles</key>
+			<array>
+				<string>Banker</string>
+				<string>Player</string>
+				<string>Tie</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Bet When</string>
+			<key>Key</key>
+			<string>simBasicBetFrequency</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Titles</key>
+			<array>
+				<string>Always</string>
+				<string>Custom Trigger</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Bet Progression</string>
+			<key>Key</key>
+			<string>simBasicBetProgression</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Titles</key>
+			<array>
+				<string>Always base bet</string>
+				<string>Double on loss</string>
+				<string>Cutom progression</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Trigger</string>
+			<key>Key</key>
+			<string>simBasicCustomTrigger</string>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Progression</string>
+			<key>Key</key>
+			<string>simBasicCustomProgression</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+	</array>
+</dict>
+</plist>
