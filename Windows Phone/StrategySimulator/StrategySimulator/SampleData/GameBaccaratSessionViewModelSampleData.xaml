@@ -1,0 +1,72 @@
+﻿<vm:GameBaccaratSessionViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:StrategySimulator.ViewModels"
+    xmlns:m="clr-namespace:StrategySimulator.Model"
+    xmlns:ms="clr-namespace:StrategySimulator.Model.State"
+    StatsCoupsValue="100"
+    StatsPlayerValue="45"
+    StatsPlayerPercent="45.00%"
+    StatsBankerValue="45"
+    StatsBankerPercent="45.00%"
+    StatsTieValue="10"
+    StatsTiePercent="10.00%"
+    StatsWinLossNumberValue="50:50"
+    StatsWinLossNumberPercent="1.00"
+    StatsWinLossNumberPlayerValue="25:25"
+    StatsWinLossNumberPlayerPercent="1.00"
+    StatsWinLossNumberBankerValue="25:25"
+    StatsWinLossNumberBankerPercent="1.00"
+    StatsWinLossNumberTieValue="5:5"
+    StatsWinLossNumberTiePercent="1.00"
+    StatsWinLossUnitValue="500:500"
+    StatsWinLossUnitPercent="1.00"
+    StatsWinLossUnitPlayerValue="250:250"
+    StatsWinLossUnitPlayerPercent="1.00"
+    StatsWinLossUnitBankerValue="250:250"
+    StatsWinLossUnitBankerPercent="1.00"
+    StatsWinLossUnitTieValue="50:50"
+    StatsWinLossUnitTiePercent="1.00"
+    StatsMaxValue="100:100"
+    StatsAveValue="100:100"
+    StatsTotalScoreValue="25"
+    StatsPAValue="26%"
+    >
+
+    <vm:GameBaccaratSessionViewModel.ItemsShoe>
+        <vm:ItemResultBaccaratShoeViewModel IndexShoe="1" NCoup="80" NPlayer="40" NBanker="40" NTie="5" ScoreShoe="10.50" ScoreTotal="1.00"/>
+        <vm:ItemResultBaccaratShoeViewModel IndexShoe="10" NCoup="80" NPlayer="40" NBanker="40" NTie="15" ScoreShoe="-10.50" ScoreTotal="10.00"/>
+        <vm:ItemResultBaccaratShoeViewModel IndexShoe="100" NCoup="80" NPlayer="40" NBanker="40" NTie="5" ScoreShoe="100.50" ScoreTotal="100.00"/>
+        <vm:ItemResultBaccaratShoeViewModel IndexShoe="1000" NCoup="80" NPlayer="40" NBanker="40" NTie="5" ScoreShoe="-100.50" ScoreTotal="-1000.00"/>
+    </vm:GameBaccaratSessionViewModel.ItemsShoe>
+
+    <vm:GameBaccaratSessionViewModel.GameBaccaratSessionStateModel>
+        <ms:GameBaccaratSessionStateModel IsResultsVisible="True" IsProgressStatusVisible="False"/>
+    </vm:GameBaccaratSessionViewModel.GameBaccaratSessionStateModel>
+
+    <vm:GameBaccaratSessionViewModel.ChartShoeScores>
+
+        <m:ChartDataPoint x="0"
+                          y="-5"/>
+        <m:ChartDataPoint x="1"
+                          y="10"/>
+        <m:ChartDataPoint x="2"
+                          y="4"/>
+        <m:ChartDataPoint x="3"
+                          y="22"/>
+        <m:ChartDataPoint x="4"
+                          y="30"/>
+        <m:ChartDataPoint x="5"
+                          y="27"/>
+        <m:ChartDataPoint x="6"
+                          y="35"/>
+        <m:ChartDataPoint x="7"
+                          y="4"/>
+        <m:ChartDataPoint x="8"
+                          y="18"/>
+        <m:ChartDataPoint x="9"
+                          y="33"/>
+
+    </vm:GameBaccaratSessionViewModel.ChartShoeScores>
+
+</vm:GameBaccaratSessionViewModel>

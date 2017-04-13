@@ -1,0 +1,16 @@
+﻿<vm:MainViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:StrategySimulator.ViewModels"
+    SampleProperty="Sample Text Property Value">
+
+    <vm:MainViewModel.Items>
+        <vm:ItemViewModel ItemGames="baccarat"/>
+        <vm:ItemViewModel ItemGames="blackjack"/>
+        <vm:ItemViewModel ItemGames="craps"/>
+        <vm:ItemViewModel ItemGames="poker"/>
+        <vm:ItemViewModel ItemGames="roulette"/>
+        <vm:ItemViewModel ItemGames="slots"/>
+    </vm:MainViewModel.Items>
+
+</vm:MainViewModel>

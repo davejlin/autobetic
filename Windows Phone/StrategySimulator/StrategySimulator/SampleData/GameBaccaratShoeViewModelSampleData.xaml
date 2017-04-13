@@ -1,0 +1,112 @@
+﻿<vm:GameBaccaratShoeViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:StrategySimulator.ViewModels"
+    xmlns:m="clr-namespace:StrategySimulator.Model"
+    Header="shoe #1"
+    StatsCoupsValue="100"
+    StatsPlayerValue="45"
+    StatsPlayerPercent="45.00%"
+    StatsBankerValue="45"
+    StatsBankerPercent="45.00%"
+    StatsTieValue="10"
+    StatsTiePercent="10.00%"
+    StatsWinLossNumberValue="50:50"
+    StatsWinLossNumberPercent="1.00"
+    StatsWinLossNumberPlayerValue="25:25"
+    StatsWinLossNumberPlayerPercent="1.00"
+    StatsWinLossNumberBankerValue="25:25"
+    StatsWinLossNumberBankerPercent="1.00"
+    StatsWinLossNumberTieValue="5:5"
+    StatsWinLossNumberTiePercent="1.00"
+    StatsWinLossUnitValue="500:500"
+    StatsWinLossUnitPercent="1.00"
+    StatsWinLossUnitPlayerValue="250:250"
+    StatsWinLossUnitPlayerPercent="1.00"
+    StatsWinLossUnitBankerValue="250:250"
+    StatsWinLossUnitBankerPercent="1.00"
+    StatsWinLossUnitTieValue="50:50"
+    StatsWinLossUnitTiePercent="1.00"
+    StatsMaxValue="100:100"
+    StatsAveValue="100:100"
+    StatsTotalScoreValue="25"
+    StatsPAValue="26%"
+    >
+
+    <vm:GameBaccaratShoeViewModel.ItemsCoup>
+        <vm:ItemResultBaccaratCoupViewModel IndexDecision="1" Winner="/Assets/Cards/ScorecardP.png" 
+                                            CardPlayer1="/Assets/Cards/ClubsAce.png"
+                                            CardPlayer2="/Assets/Cards/SpadesTwo.png"
+                                            CardPlayer3="/Assets/Cards/HeartsThree.png"
+                                            CardBanker1="/Assets/Cards/DiamondsKing.png"
+                                            CardBanker2="/Assets/Cards/ClubsTen.png"
+                                            CardBanker3="/Assets/Cards/SpadesQueen.png"
+                                            IsBetBanker="True"
+                                            IsBetPlayer="False"
+                                            IsBetTie   ="False"
+                                            UnitBet    ="1"
+                                            TotalScore ="-1"/>
+        <vm:ItemResultBaccaratCoupViewModel IndexDecision="2" Winner="/Assets/Cards/ScorecardB.png" 
+                                            CardPlayer1="/Assets/Cards/SpadesAce.png"
+                                            CardPlayer2="/Assets/Cards/ClubsJack.png"
+                                            CardPlayer3="/Assets/Cards/NoneNone.png"
+                                            CardBanker1="/Assets/Cards/SpadesSix.png"
+                                            CardBanker2="/Assets/Cards/HeartsThree.png"
+                                            CardBanker3="/Assets/Cards/NoneNone.png"
+                                            IsBetBanker="False"
+                                            IsBetPlayer="True"
+                                            IsBetTie   ="False"
+                                            UnitBet    ="100"
+                                            TotalScore ="-101"/>
+        <vm:ItemResultBaccaratCoupViewModel IndexDecision="3" Winner="/Assets/Cards/ScorecardT.png" 
+                                            CardPlayer1="/Assets/Cards/DiamondsTwo.png"
+                                            CardPlayer2="/Assets/Cards/ClubsTen.png"
+                                            CardPlayer3="/Assets/Cards/SpadesFour.png"
+                                            CardBanker1="/Assets/Cards/DiamondsKing.png"
+                                            CardBanker2="/Assets/Cards/HeartsAce.png"
+                                            CardBanker3="/Assets/Cards/HeartsFive.png"
+                                            IsBetBanker="False"
+                                            IsBetPlayer="False"
+                                            IsBetTie   ="True"
+                                            UnitBet    ="1000"
+                                            TotalScore ="-101"/>
+        <vm:ItemResultBaccaratCoupViewModel IndexDecision="105" Winner="/Assets/Cards/ScorecardP.png" 
+                                            CardPlayer1="/Assets/Cards/SpadesSeven.png"
+                                            CardPlayer2="/Assets/Cards/ClubsTwo.png"
+                                            CardPlayer3="/Assets/Cards/NoneNone.png"
+                                            CardBanker1="/Assets/Cards/SpadesJack.png"
+                                            CardBanker2="/Assets/Cards/HeartsEight.png"
+                                            CardBanker3="/Assets/Cards/NoneNone.png"
+                                            IsBetBanker="False"
+                                            IsBetPlayer="True"
+                                            IsBetTie   ="False"
+                                            UnitBet    ="1000"
+                                            TotalScore ="899"/>
+    </vm:GameBaccaratShoeViewModel.ItemsCoup>
+
+    <vm:GameBaccaratShoeViewModel.ChartCoupScores>
+
+        <m:ChartDataPoint x="0"
+                          y="-5"/>        
+        <m:ChartDataPoint x="1"
+                          y="10"/>
+        <m:ChartDataPoint x="2"
+                          y="4"/>
+        <m:ChartDataPoint x="3"
+                          y="22"/>
+        <m:ChartDataPoint x="4"
+                          y="30"/>
+        <m:ChartDataPoint x="5"
+                          y="27"/>
+        <m:ChartDataPoint x="6"
+                          y="35"/>
+        <m:ChartDataPoint x="7"
+                          y="4"/>
+        <m:ChartDataPoint x="8"
+                          y="18"/>
+        <m:ChartDataPoint x="9"
+                          y="33"/>
+
+    </vm:GameBaccaratShoeViewModel.ChartCoupScores>
+
+</vm:GameBaccaratShoeViewModel>

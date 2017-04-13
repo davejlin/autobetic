@@ -1,0 +1,147 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="StrategySimulator.View.GameBaccarat"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+    
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+
+        <phone:Pivot x:Name="GameBaccaratPivot" Title="baccarat">
+            <!--<phone:Pivot.Background>
+                <ImageBrush ImageSource="../Assets/Background.png"/>
+            </phone:Pivot.Background>-->
+            <phone:PivotItem x:Name="playPivot" Header="play">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <ScrollViewer>
+                            <StackPanel>
+                            
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Button Grid.Column="0" Grid.Row="0" x:Name="strategy1Button" Click="strategy1Button_Click" >
+                                        <StackPanel>
+                                            <TextBlock Text="strategy set 1"/>
+                                            <TextBlock x:Name="strategySet1BetPlacementTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                            <TextBlock x:Name="strategySet1BetProgressionTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Grid.Column="1" Grid.Row="0" x:Name="strategy2Button" Click="strategy2Button_Click" >
+                                        <StackPanel>
+                                            <TextBlock Text="strategy set 2"/>
+                                            <TextBlock x:Name="strategySet2BetPlacementTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                            <TextBlock x:Name="strategySet2BetProgressionTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Grid.Column="0" Grid.Row="1" x:Name="strategy3Button" Click="strategy3Button_Click" >
+                                        <StackPanel>
+                                            <TextBlock Text="strategy set 3"/>
+                                            <TextBlock x:Name="strategySet3BetPlacementTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                            <TextBlock x:Name="strategySet3BetProgressionTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Grid.Column="1" Grid.Row="1" x:Name="strategy4Button" Click="strategy4Button_Click" >
+                                        <StackPanel>
+                                            <TextBlock Text="strategy set 4"/>
+                                            <TextBlock x:Name="strategySet4BetPlacementTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                            <TextBlock x:Name="strategySet4BetProgressionTextBlock" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="16" />
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+
+                                <toolkit:ToggleSwitch x:Name="bankrollCheckbox" Header="use bankroll" IsChecked="{Binding IsBankroll, Mode=TwoWay}"/>
+                                <StackPanel Margin="0,-25,0,0" Visibility="{Binding IsBankroll, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="bankroll" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBox x:Name="bankrollTextBox" TextWrapping="NoWrap" Text="{Binding BankrollString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="bankrollTextBox_GotFocus" LostFocus="bankrollTextBox_LostFocus" />
+                                </StackPanel>
+
+                                <toolkit:ToggleSwitch x:Name="shoeStopLossCheckbox" Header="use shoe stop loss" IsChecked="{Binding IsShoeStopLoss, Mode=TwoWay}"/>
+                                <StackPanel Margin="0,-25,0,0" Visibility="{Binding IsShoeStopLoss, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="shoe stop loss" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBox x:Name="shoeStopLossTextBox" TextWrapping="NoWrap" Text="{Binding ShoeStopLossString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="shoeStopLossTextBox_GotFocus" LostFocus="shoeStopLossTextBox_LostFocus" />
+                                </StackPanel>
+
+                                <toolkit:ToggleSwitch x:Name="shoeTakeProfitCheckbox" Header="use shoe take profit" IsChecked="{Binding IsShoeTakeProfit, Mode=TwoWay}"/>
+                                <StackPanel Margin="0,-25,0,0" Visibility="{Binding IsShoeTakeProfit, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="shoe take profit" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBox x:Name="shoeTakeProfitTextBox" TextWrapping="NoWrap" Text="{Binding ShoeTakeProfitString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="shoeTakeProfitTextBox_GotFocus" LostFocus="shoeTakeProfitTextBox_LostFocus"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Button x:Name="playButton" Content="run session!"  Click="playButton_Click" Canvas.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="450" Height="120"/>
+                    </Grid>
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem x:Name="settings" Header="settings">
+                <ScrollViewer>
+                    <StackPanel>
+
+                        <toolkit:ToggleSwitch x:Name="tiesCheckbox" Header="include ties" IsChecked="{Binding IsTies, Mode=TwoWay}"/>
+                        <toolkit:ListPicker x:Name="tiePayoffListPicker"
+                                            Margin="10,-25,10,10"
+                                            Visibility="{Binding IsTies, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Header="tie payoff (n:1)"
+                                            ItemsSource="{Binding TiePayoffOptions}"
+                                            SelectedIndex="{Binding TiePayoffOptionPickedIndex, Mode=TwoWay}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}" SelectionChanged="tiePayoffListPicker_SelectionChanged">
+                        </toolkit:ListPicker>
+
+                        <TextBlock Text="base unit bet" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="baseUnitBetTextBox" TextWrapping="NoWrap" Text="{Binding BetBaseUnit, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="baseUnitBetTextBox_GotFocus" LostFocus="baseUnitBetTextBox_LostFocus"/>
+
+                        <TextBlock Text="maximum unit bet" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="maxUnitBetTextBox" TextWrapping="NoWrap" Text="{Binding BetMaxUnit, Mode=TwoWay}" InputScope="Digits"  Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="maxUnitBetTextBox_GotFocus" LostFocus="maxUnitBetTextBox_LostFocus"/>
+
+                        <TextBlock Text="number of decks per shoe" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="nDecksTextBox" TextWrapping="NoWrap" Text="{Binding NDecks, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="nDecksTextBox_GotFocus" LostFocus="nDecksTextBox_LostFocus"/>
+
+                        <TextBlock Text="number of shoes per session" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="nShoesTextBox" TextWrapping="NoWrap" Text="{Binding NShoes, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="nShoesTextBox_GotFocus" LostFocus="nShoesTextBox_LostFocus"/>
+
+                        <toolkit:ToggleSwitch x:Name="burnCheckbox" Header="burn cards" IsChecked="{Binding IsBurn, Mode=TwoWay}"/>
+                        <toolkit:ToggleSwitch x:Name="shuffleCheckbox" Header="shuffle decks" IsChecked="{Binding IsShuffle, Mode=TwoWay}"/>
+                        <toolkit:ToggleSwitch x:Name="newCardsCheckbox" Header="new card order every new shoe" IsChecked="{Binding IsNewCards, Mode=TwoWay}"/>
+
+                        <Button x:Name="resetAllSettingValuesButton" Click="resetAllSettingValuesButton_Click">
+                            <TextBlock Text="reset all settings to default values" TextWrapping="NoWrap"/>
+                        </Button>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--<phone:PivotItem x:Name="helpPivot" Header="help">
+                <TextBlock Text="help page"/>
+            </phone:PivotItem>-->
+
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,382 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="StrategySimulator.View.GameBaccaratShoe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" 
+    d:DataContext="{d:DesignData /SampleData/GameBaccaratShoeViewModelSampleData.xaml}"
+    shell:SystemTray.IsVisible="True" LostFocus="PhoneApplicationPage_LostFocus"
+    xmlns:amchart="clr-namespace:AmCharts.Windows.QuickCharts;assembly=AmCharts.Windows.QuickCharts.WP">
+
+        <!--LayoutRoot is the root grid where all page content is placed-->
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <phone:Pivot Title="baccarat results">
+            <!--<phone:Pivot.Background>
+                <ImageBrush Stretch="Fill" ImageSource="../Assets/Background.png"/>
+            </phone:Pivot.Background>-->
+
+            <phone:PivotItem x:Name="pivotItem1" Header="{Binding Header}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="5.5*"/>                                
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="5.5*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="hand" TextWrapping="Wrap" FontSize="10" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="1" Text="P" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="B" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Text="P1" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left" />
+                            <TextBlock Grid.Column="5" Text="P2" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="6" Text="P3" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="8" Text="B1" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="9" Text="B2" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="10" Text="B3" TextWrapping="Wrap" FontSize="20" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Grid>
+
+                    <phone:LongListSelector x:Name="ShoeLongListSelector" Grid.Row="1" ItemsSource="{Binding ItemsCoup}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding IndexDecision}" TextWrapping="Wrap" FontSize="13" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalAlignment="Left"/>
+                                    <Image     Grid.Column="1" Source="{Binding Winner}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Image     Grid.Column="3" Source="{Binding CardPlayer1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image     Grid.Column="4" Source="{Binding CardPlayer2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image     Grid.Column="5" Source="{Binding CardPlayer3}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image     Grid.Column="7" Source="{Binding CardBanker1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image     Grid.Column="8" Source="{Binding CardBanker2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image     Grid.Column="9" Source="{Binding CardBanker3}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5.5*"/>
+                                            <ColumnDefinition Width="5.5*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="{Binding UnitBet}" Visibility="{Binding IsBetPlayer, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding UnitBet}" Visibility="{Binding IsBetBanker, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold"/>
+                                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding UnitBet}" Visibility="{Binding IsBetTie, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold"/>
+
+                                    </Grid>
+                                    <TextBlock Grid.Column="1" Text="{Binding TotalScore}" Foreground="Black" Margin="0,0,4,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14"/>
+
+                                </Grid>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                    <Grid Grid.Row="2">
+                    </Grid>
+
+
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="stats">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Grid x:Name="PBTGrid" Margin="2,2,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+<!-- Coups -->
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="CoupsTitle" TextAlignment="Left" TextWrapping="Wrap" Text="coups" FontSize="30" Grid.ColumnSpan="3">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="StatsCoupsValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsCoupsValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="2" x:Name="StatsCoupsPercent" TextAlignment="Right" TextWrapping="Wrap" Text="100%" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsPlayerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="players" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="StatsPlayerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsPlayerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="2" x:Name="StatsPlayerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsPlayerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsBankerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="bankers" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="StatsBankerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsBankerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="2" x:Name="StatsBankerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsBankerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsTieTitle" TextAlignment="Left" TextWrapping="Wrap" Text="ties" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="StatsTieValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsTieValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="2" x:Name="StatsTiePercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsTiePercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+<!-- Win:Loss (#) -->
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" x:Name="WinLossNumberTitle" TextAlignment="Left" TextWrapping="Wrap" Text="win:loss #" FontSize="30" Grid.ColumnSpan="3">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="1" x:Name="StatsWinLossNumberValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="2" x:Name="StatsWinLossNumberPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberPercent}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinLossNumberPlayerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="players" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="1" x:Name="StatsWinLossNumberPlayerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberPlayerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="2" x:Name="StatsWinLossNumberPlayerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberPlayerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinLossNumberBankerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="bankers" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="1" x:Name="StatsWinLossNumberBankerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberBankerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="2" x:Name="StatsWinLossNumberBankerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberBankerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinsTieTitle" TextAlignment="Left" TextWrapping="Wrap" Text="ties" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="7" Grid.Column="1" x:Name="StatsWinLossNumberTieValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberTieValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="7" Grid.Column="2" x:Name="StatsWinLossNumberTiePercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossNumberTiePercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+<!-- Win:Loss (u) -->
+
+                            <TextBlock Grid.Row="8" Grid.Column="0" x:Name="WinLossUnitTitle" TextAlignment="Left" TextWrapping="Wrap" Text="win:loss u" FontSize="30" Grid.ColumnSpan="3">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="8" Grid.Column="1" x:Name="StatsWinLossUnitValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="8" Grid.Column="2" x:Name="StatsWinLossUnitPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitPercent}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="9" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinLossUnitPlayerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="players" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="9" Grid.Column="1" x:Name="StatsWinLossUnitPlayerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitPlayerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="9" Grid.Column="2" x:Name="StatsWinLossUnitPlayerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitPlayerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="10" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinLossUnitBankerTitle" TextAlignment="Left" TextWrapping="Wrap" Text="bankers" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="10" Grid.Column="1" x:Name="StatsWinLossUnitBankerValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitBankerValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="10" Grid.Column="2" x:Name="StatsWinLossUnitBankerPercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitBankerPercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="11" Grid.Column="0" Margin="10,0,0,0" x:Name="StatsWinLossUnitTieTitle" TextAlignment="Left" TextWrapping="Wrap" Text="ties" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="11" Grid.Column="1" x:Name="StatsWinsLossUnitTieValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitTieValue}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            <TextBlock Grid.Row="11" Grid.Column="2" x:Name="StatsWinLossUnitTiePercent" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsWinLossUnitTiePercent}" FontSize="22">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                        </Grid>
+
+                        <Grid x:Name="MaxAveGrid" Margin="2,5,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>                                
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="MaxTitle" TextAlignment="Left" TextWrapping="Wrap" Text="max win:loss u" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="MaxValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsMaxValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="AveTitle" TextAlignment="Left" TextWrapping="Wrap" Text="ave win:loss u" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                            
+                            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="AveValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsAveValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" x:Name="FinalScoreTitle" TextAlignment="Left" TextWrapping="Wrap" Text="total score u" FontSize="30" Grid.ColumnSpan="2">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TotalScoreValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsTotalScoreValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>                            
+                            
+                            <TextBlock Grid.Row="3" Grid.Column="0" x:Name="PATitle" TextAlignment="Left" TextWrapping="Wrap" Text="player's advantage" FontSize="30" Grid.ColumnSpan="2">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+
+                            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="PAValue" TextAlignment="Right" TextWrapping="Wrap" Text="{Binding StatsPAValue}" FontSize="30">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}" />
+                                </TextBlock.Foreground></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="chart">
+
+                <amchart:SerialChart x:Name="chart" 
+                                     DataSource="{Binding ChartCoupScores}" 
+                                     CategoryValueMemberPath="x"
+                                     AxisForeground="{StaticResource PhoneForegroundBrush}"
+                                     PlotAreaBackground="{StaticResource PhoneBackgroundBrush}"
+                                     GridStroke="{StaticResource PhoneBackgroundBrush}"
+                                     IsHitTestVisible="False">
+                    <amchart:SerialChart.Graphs>
+                        <amchart:LineGraph 
+                            ValueMemberPath="y" 
+                            Title="coup score" 
+                            StrokeThickness="5"
+                            Brush="{StaticResource PhoneAccentBrush}"/>
+                    </amchart:SerialChart.Graphs>
+                </amchart:SerialChart>
+            </phone:PivotItem>
+            
+        </phone:Pivot>           
+            
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,206 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="StrategySimulator.View.StrategizeBaccarat"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolkit ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData /SampleData/GameBaccaratViewModelSampleData.xaml}"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="ListPickerItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Name="ListPickerFullModeItemTemplate">
+            <StackPanel Margin="0,10" Orientation="Vertical">
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Description}" Style="{StaticResource PhoneTextSubtleStyle}"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="{Binding Header}" Style="{StaticResource PhoneTextTitle2Style}"/>
+        
+        <ScrollViewer Grid.Row="1">
+                <StackPanel>
+                    <toolkit:ListPicker x:Name="betPlacementStrategyListPicker"
+                                            Header="bet placement strategy"
+                                            FullModeHeader="bet placement strategy"
+                                            ItemsSource="{Binding BetPlacementStrategyOptions}"
+                                            SelectedIndex="{Binding BetPlacementStrategyOptionPickedIndex, Mode=TwoWay}"
+                                            ItemTemplate="{StaticResource ListPickerItemTemplate}"
+                                            FullModeItemTemplate="{StaticResource ListPickerFullModeItemTemplate}"
+                                            Foreground="{StaticResource PhoneTextHighContrastBrush}" 
+                                            SelectionChanged="betPlacementStrategyListPicker_SelectionChanged">
+                    </toolkit:ListPicker>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsCustomPatternVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <toolkit:ListPicker x:Name="betPlacementCustomPatternListPicker"
+                                            Header="custom pattern: bet placement"
+                                            ItemsSource="{Binding BetPlacementOptions}"
+                                            SelectedIndex="{Binding BetPlacementCustomPatternOptionPickedIndex, Mode=TwoWay}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}">
+                        </toolkit:ListPicker>
+
+                        <TextBlock Text="custom pattern: target pattern" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="targetCustomPatternTextBox" TextWrapping="NoWrap" Text="{Binding TargetCustomPatternString, Mode=TwoWay}" InputScope="Text" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="targetCustomPatternTextBox_GotFocus" LostFocus="targetCustomPatternTextBox_LostFocus"/>
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsStreaksVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <toolkit:ListPicker x:Name="betPlacementStreakListPicker"
+                                            Header="streak: bet placement"
+                                            ItemsSource="{Binding BetPlacementOptions}"
+                                            SelectedIndex="{Binding BetPlacementStreaksOptionPickedIndex, Mode=TwoWay}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}">
+                        </toolkit:ListPicker>
+
+                        <toolkit:ListPicker x:Name="targetStreakListPicker"
+                                            Header="streak: target"
+                                            ItemsSource="{Binding BetPlacementOptions}"
+                                            SelectedIndex="{Binding TargetStreaksOptionPickedIndex, Mode=TwoWay}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}">
+                        </toolkit:ListPicker>
+
+                        <TextBlock Text="streak: target streak length n" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="targetStreakLengthTextBox" TextWrapping="NoWrap" Text="{Binding TargetStreakLength, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="targetStreakLengthTextBox_GotFocus" LostFocus="targetStreakLengthTextBox_LostFocus" />
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsCustomRepeatVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="custom repeat: nth to last decision" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="customRepeatTextBox" TextWrapping="NoWrap" Text="{Binding CustomRepeatLength, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="customRepeatTextBox_GotFocus" LostFocus="customRepeatTextBox_LostFocus"/>
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsCustomOppositeVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="custom opposite: nth to last decision" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="customOppositeTextBox" TextWrapping="NoWrap" Text="{Binding CustomOppositeLength, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="customOppositeTextBox_GotFocus" LostFocus="customOppositeTextBox_LostFocus"/>
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsFollowVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="follow after streak of n:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="followTextBox" TextWrapping="NoWrap" Text="{Binding FollowLength, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="followTextBox_GotFocus" LostFocus="followTextBox_LostFocus" />
+                    </StackPanel>
+
+                <toolkit:ListPicker x:Name="betProgressionListPicker"
+                                            Header="bet progression strategy"
+                                            FullModeHeader="bet progression strategy"
+                                            ItemsSource="{Binding BetProgressionOptions}"
+                                            SelectedIndex="{Binding BetProgressionOptionPickedIndex, Mode=TwoWay}"
+                                            ItemTemplate="{StaticResource ListPickerItemTemplate}"
+                                            FullModeItemTemplate="{StaticResource ListPickerFullModeItemTemplate}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}" SelectionChanged="betProgressionListPicker_SelectionChanged">
+                    </toolkit:ListPicker>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsMartingaleMultiplierVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="martingale multiplier" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="martingaleMultiplierTextBox" TextWrapping="NoWrap" Text="{Binding MartingaleMultiplierString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="martingaleMultiplierTextBox_GotFocus" LostFocus="martingaleMultiplierTextBox_LostFocus"/>
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsCustomProgressionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="custom progression:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="customProgressionTextBox" TextWrapping="NoWrap" Text="{Binding CustomProgressionString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="customProgressionTextBox_GotFocus" LostFocus="customProgressionTextBox_LostFocus" />
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsLabouchereProgressionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="labouchere progression:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="labouchereProgressionTextBox" TextWrapping="NoWrap" Text="{Binding LabouchereProgressionString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="labouchereProgressionTextBox_GotFocus" LostFocus="labouchereProgressionTextBox_LostFocus" />
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsFibonacciVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="down step:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="fibonacciDownTextBox" TextWrapping="NoWrap" Text="{Binding FibonacciDownString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="fibonacciDownTextBox_GotFocus" LostFocus="fibonacciDownTextBox_LostFocus"/>
+
+                    </StackPanel>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsParlayProgressionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="parlay progression:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="parlayProgressionTextBox" TextWrapping="NoWrap" Text="{Binding ParlayProgressionString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="parlayProgressionTextBox_GotFocus" LostFocus="parlayProgressionTextBox_LostFocus" />
+
+                    </StackPanel>
+
+                    <Grid Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsDAlembertVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="start level:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBox x:Name="dAlembertStartTextBox" TextWrapping="NoWrap" Text="{Binding DAlembertStartString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="dAlembertStartTextBox_GotFocus" LostFocus="dAlembertStartTextBox_LostFocus"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBlock Text="up step:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBox x:Name="dAlembertUpTextBox" TextWrapping="NoWrap" Text="{Binding DAlembertUpString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="dAlembertUpTextBox_GotFocus" LostFocus="dAlembertUpTextBox_LostFocus" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <StackPanel>
+                                <TextBlock Text="down step:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBox x:Name="dAlembertDownTextBox" TextWrapping="NoWrap" Text="{Binding DAlembertDownString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="dAlembertDownTextBox_GotFocus" LostFocus="dAlembertDownTextBox_LostFocus"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+
+                    <StackPanel Margin ="50,0,0,0" Visibility="{Binding GameBaccaratStateModel.IsOscarsGrindVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <TextBlock Text="oscar's grind cycle profit:" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox x:Name="oscarsGrindTextBox" TextWrapping="NoWrap" Text="{Binding OscarsGrindString, Mode=TwoWay}" InputScope="Digits" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource PhoneTextHighContrastBrush}" Foreground="{StaticResource PhoneTextHighContrastBrush}" GotFocus="oscarsGrindTextBox_GotFocus" LostFocus="oscarsGrindTextBox_LostFocus" />
+
+                    </StackPanel>
+
+                    <toolkit:ListPicker x:Name="ProgressionPolarityListPicker"
+                                                Header="progression polarity"
+                                                ItemsSource="{Binding ProgressionPolarityOptions}"
+                                                SelectedIndex="{Binding ProgressionPolarityOptionPickedIndex, Mode=TwoWay}"                            
+                                                toolkit:TiltEffect.SuppressTilt="True" Foreground="{StaticResource PhoneTextHighContrastBrush}"
+                                                Margin ="60,0,10,0" Visibility="{Binding GameBaccaratStateModel.IsProgressionPolarityVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    </toolkit:ListPicker>
+
+                    <toolkit:ToggleSwitch x:Name="resetProgressionAfterMaxCheckbox" Header="reset progression after maximum bet" IsChecked="{Binding IsResetProgressionAfterMax, Mode=TwoWay}"/>
+                    <toolkit:ToggleSwitch x:Name="resetProgressionAfterShoeCheckbox" Header="reset progression after each shoe" IsChecked="{Binding IsResetProgressionAfterShoe, Mode=TwoWay}"/>
+
+                </StackPanel>
+
+            </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

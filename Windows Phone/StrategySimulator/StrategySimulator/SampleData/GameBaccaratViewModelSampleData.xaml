@@ -1,0 +1,7 @@
+﻿<vm:GameBaccaratShoeViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:StrategySimulator.ViewModels"
+    Header="strategy set 1">
+
+</vm:GameBaccaratShoeViewModel>
